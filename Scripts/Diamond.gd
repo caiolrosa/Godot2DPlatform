@@ -19,6 +19,8 @@ var _DIAMOND_TYPE_TEXTURES = {
 export(DIAMOND_TYPES) var diamond_type = DIAMOND_TYPES.LOW_COST
 var diamond_sprite: Sprite
 
+onready var CoinPickupAudio: AudioStreamPlayer2D = $CoinPickupAudio
+
 func _ready():
 	diamond_sprite = Sprite.new()
 	diamond_sprite.texture = _DIAMOND_TYPE_TEXTURES[diamond_type]
@@ -26,7 +28,7 @@ func _ready():
 
 func _on_body_entered(body: PhysicsBody2D):
 	if body.name == GameManager.PLAYER_NODE_NAME:
-		$CoinPickupAudio.play()
+		CoinPickupAudio.play()
 		emit_signal("collected_diamond", diamond_type)
 		self.visible = false
 
