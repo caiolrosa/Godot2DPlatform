@@ -1,6 +1,6 @@
 extends Control
 
-onready var MoneyLabel: Label = $MoneyLabel
+onready var MoneyLabel: Label = $HBoxContainer/MoneyLabel
 
 func _ready():
 	MoneyLabel.text = "0"
