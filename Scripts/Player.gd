@@ -13,6 +13,7 @@ var money = 0
 var health_points = 100
 
 onready var Sprite: Sprite = $Sprite
+onready var JumpAudioPlayer: AudioStreamPlayer2D = $JumpAudioPlayer
 
 func _on_collected_diamond(diamond_type):
 	money += diamond_type
@@ -42,6 +43,7 @@ func _jump():
 		return
 	velocity.y = -JUMP_FORCE
 	Sprite.play("JumpStart")
+	JumpAudioPlayer.play()
 
 func _idle():
 	velocity.x = 0

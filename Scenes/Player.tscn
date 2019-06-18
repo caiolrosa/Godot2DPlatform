@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/adventurer_walk1.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Player/adventurer_jump.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Player/adventurer_idle.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Player/adventurer_stand.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Audio/Jump/jump_0.wav" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -58,3 +59,6 @@ drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = true
 smoothing_speed = 10.0
+
+[node name="JumpAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
