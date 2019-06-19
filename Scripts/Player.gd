@@ -1,8 +1,5 @@
 extends KinematicBody2D
 
-signal update_money(money)
-signal update_health_points(health_points)
-
 const SPEED = 150
 const GRAVITY = 20
 const JUMP_FORCE = 400
@@ -15,9 +12,12 @@ var health_points = 100
 onready var Sprite: Sprite = $Sprite
 onready var JumpAudioPlayer: AudioStreamPlayer2D = $JumpAudioPlayer
 
+func _ready():
+	EventBroker.connect(EventBroker.DIAMOND_COLLECTED_EVENT, self, "_on_collected_diamond")
+
 func _on_collected_diamond(diamond_type):
 	money += diamond_type
-	emit_signal("update_money", money)
+	EventBroker.dispatch(EventBroker.UPDATE_MONEY_EVENT, [money])
 
 func _apply_gravity():
 	velocity.y += GRAVITY

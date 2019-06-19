@@ -1,7 +1,5 @@
 extends Node2D
 
-signal collected_diamond(diamond_type)
-
 const GameManager = preload("GameManager.gd")
 enum DIAMOND_TYPES { 
 	LOW_COST = 150,
@@ -29,7 +27,7 @@ func _ready():
 func _on_body_entered(body: PhysicsBody2D):
 	if body.name == GameManager.PLAYER_NODE_NAME:
 		CoinPickupAudio.play()
-		emit_signal("collected_diamond", diamond_type)
+		EventBroker.dispatch(EventBroker.DIAMOND_COLLECTED_EVENT, [diamond_type])
 		self.visible = false
 
 func _on_CoinPickupAudio_finished():

@@ -1,5 +1,7 @@
 extends HBoxContainer
 
+class_name HeartProgressBar
+
 export(int)     var max_hearts = 5
 export(Texture) var empty_heart_texture
 export(Texture) var half_heart_texture
