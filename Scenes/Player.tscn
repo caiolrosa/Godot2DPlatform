@@ -3,8 +3,8 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/adventurer_walk1.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Player/adventurer_walk2.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Player/adventurer_fall.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Player/adventurer_jump.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Player/adventurer_jump.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Player/adventurer_fall.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Player/adventurer_idle.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Player/adventurer_stand.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Audio/Jump/jump_0.wav" type="AudioStream" id=8]
@@ -18,12 +18,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "JumpEnd",
+"name": "JumpStart",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "JumpStart",
+"name": "JumpEnd",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
@@ -33,8 +33,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 23.0
-height = 45.0
+radius = 28.0
+height = 35.0
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 240.622, 300.254 )
