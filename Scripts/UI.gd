@@ -1,5 +1,7 @@
 extends Control
 
+class_name UI
+
 onready var MoneyLabel: Label = $MoneyHBox/MoneyLabel
 
 func _ready():

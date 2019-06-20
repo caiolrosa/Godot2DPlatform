@@ -1,6 +1,9 @@
 extends Node2D
 
-const GameManager = preload("GameManager.gd")
+class_name Diamond
+
+onready var CoinPickupAudio: AudioStreamPlayer2D = $CoinPickupAudio
+
 enum DIAMOND_TYPES { 
 	LOW_COST = 150,
 	MEDIUM_COST = 300,
@@ -14,10 +17,8 @@ var _DIAMOND_TYPE_TEXTURES = {
 	DIAMOND_TYPES.MAX_COST: load("res://Assets/Diamonds/platformPack_item010.png")
 }
 
-export(DIAMOND_TYPES) var diamond_type = DIAMOND_TYPES.LOW_COST
 var diamond_sprite: Sprite
-
-onready var CoinPickupAudio: AudioStreamPlayer2D = $CoinPickupAudio
+export(DIAMOND_TYPES) var diamond_type = DIAMOND_TYPES.LOW_COST
 
 func _ready():
 	diamond_sprite = Sprite.new()
@@ -25,7 +26,7 @@ func _ready():
 	self.add_child(diamond_sprite)
 
 func _on_body_entered(body: PhysicsBody2D):
-	if body.name == GameManager.PLAYER_NODE_NAME:
+	if body is Player:
 		CoinPickupAudio.play()
 		EventBroker.dispatch(EventBroker.DIAMOND_COLLECTED_EVENT, [diamond_type])
 		self.visible = false

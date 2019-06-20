@@ -9,13 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Diamond",
+"language": "GDScript",
+"path": "res://Scripts/Diamond.gd"
+}, {
+"base": "Node2D",
+"class": "Door",
+"language": "GDScript",
+"path": "res://Scripts/Door.gd"
+}, {
 "base": "HBoxContainer",
 "class": "HeartProgressBar",
 "language": "GDScript",
 "path": "res://Scripts/HeartProgressBar.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Scripts/Player.gd"
+}, {
+"base": "Control",
+"class": "UI",
+"language": "GDScript",
+"path": "res://Scripts/UI.gd"
 } ]
 _global_script_class_icons={
-"HeartProgressBar": ""
+"Diamond": "",
+"Door": "",
+"HeartProgressBar": "",
+"Player": "",
+"UI": ""
 }
 
 [application]
@@ -27,7 +51,6 @@ config/icon="res://icon.png"
 [autoload]
 
 EventBroker="*res://Scripts/EventBroker.gd"
-GameManager="*res://Scripts/GameManager.gd"
 
 [rendering]
 
