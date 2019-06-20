@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name Player
 
-onready var Sprite: Sprite = $Sprite
+onready var PlayerSprite: Sprite = $Sprite
 onready var JumpAudioPlayer: AudioStreamPlayer2D = $JumpAudioPlayer
 
 const SPEED = 150
@@ -30,31 +30,31 @@ func _update_movement():
 
 func _move_left():
 	velocity.x = -SPEED
-	Sprite.flip_h = true
+	PlayerSprite.flip_h = true
 	if is_on_floor():
-		Sprite.play("Walk")
+		PlayerSprite.play("Walk")
 
 func _move_right():
 	velocity.x = SPEED
-	Sprite.flip_h = false
+	PlayerSprite.flip_h = false
 	if is_on_floor():
-		Sprite.play("Walk")
+		PlayerSprite.play("Walk")
 
 func _jump():
 	if not is_on_floor():
 		return
 	velocity.y = -JUMP_FORCE
-	Sprite.play("JumpStart")
+	PlayerSprite.play("JumpStart")
 	JumpAudioPlayer.play()
 
 func _idle():
 	velocity.x = 0
 	if is_on_floor():
-		Sprite.play("Idle")
+		PlayerSprite.play("Idle")
 	
 func _update_jump_animation():
 	if not is_on_floor() && velocity.y > 0:
-		Sprite.play("JumpEnd")
+		PlayerSprite.play("JumpEnd")
 
 func _act_on_input():
 	if Input.is_action_pressed("ui_left"):
