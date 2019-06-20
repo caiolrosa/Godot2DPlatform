@@ -22,6 +22,7 @@ editor/display_folded = true
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="CloudLayer" type="ParallaxLayer" parent="Background"]
+editor/display_folded = true
 motion_mirroring = Vector2( 1024, 0 )
 
 [node name="Sprite" type="Sprite" parent="Background/CloudLayer"]
@@ -32,6 +33,7 @@ offset = Vector2( 0, -200 )
 
 [node name="ForestLayer" type="ParallaxLayer" parent="Background"]
 editor/display_folded = true
+motion_scale = Vector2( 0.5, 1 )
 motion_mirroring = Vector2( 1024, 0 )
 
 [node name="Sprite" type="Sprite" parent="Background/ForestLayer"]
