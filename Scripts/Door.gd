@@ -1,4 +1,4 @@
-extends Node2D
+extends Unlockable
 
 class_name Door
 
@@ -6,30 +6,42 @@ onready var TopFrameSprite: Sprite = $CollisionArea/TopFrame
 onready var KeyHoleFrameSprite: Sprite = $CollisionArea/KeyHoleFrame
 onready var DoorOpenAudioPlayer: AudioStreamPlayer2D = $DoorOpenAudioPlayer
 
-export(Texture) var top_frame_texture
-export(Texture) var key_hole_frame_texture
-export(Texture) var top_frame_open_texture
-export(Texture) var key_hole_open_texture
-
 var is_open = false
+var _DOOR_TYPE_TEXTURES = {
+	"top_frame_open": load("res://Assets/Doors/platformPack_tile048.png"),
+	"key_hole_frame_open": load("res://Assets/Doors/platformPack_tile057.png"),
+	UNLOCKABLE_TYPE.BLUE: {
+		"top_frame": load("res://Assets/Doors/platformPack_tile049.png"),
+		"key_hole_frame": load("res://Assets/Doors/platformPack_tile058.png")
+	},
+	UNLOCKABLE_TYPE.YELLOW: {
+		"top_frame": load("res://Assets/Doors/platformPack_tile050.png"),
+		"key_hole_frame": load("res://Assets/Doors/platformPack_tile059.png")
+	},
+	UNLOCKABLE_TYPE.GREEN: {
+		"top_frame": load("res://Assets/Doors/platformPack_tile051.png"),
+		"key_hole_frame": load("res://Assets/Doors/platformPack_tile060.png")
+	},
+	UNLOCKABLE_TYPE.RED: {
+		"top_frame": load("res://Assets/Doors/platformPack_tile052.png"),
+		"key_hole_frame": load("res://Assets/Doors/platformPack_tile061.png")
+	}
+}
 
 func _on_body_entered(body: PhysicsBody2D):
 	if not is_open and body is Player:
-		_open()
+		pass
 
 func _ready():
-	_assert_textures_exist()
-	TopFrameSprite.texture = top_frame_texture
-	KeyHoleFrameSprite.texture = key_hole_frame_texture
+	TopFrameSprite.texture = _DOOR_TYPE_TEXTURES[type]["top_frame"]
+	KeyHoleFrameSprite.texture = _DOOR_TYPE_TEXTURES[type]["key_hole_frame"]
+	EventBroker.connect(EventBroker.KEY_COLLECTED_EVENT, self, "_on_open")
 
-func _open():
+func _on_open(key_type):
+	if key_type != type:
+		return
+	
 	is_open = true
-	TopFrameSprite.texture = top_frame_open_texture
-	KeyHoleFrameSprite.texture = key_hole_open_texture
+	TopFrameSprite.texture = _DOOR_TYPE_TEXTURES["top_frame_open"]
+	KeyHoleFrameSprite.texture = _DOOR_TYPE_TEXTURES["key_hole_frame_open"]
 	DoorOpenAudioPlayer.play()
-
-func _assert_textures_exist():
-	assert( top_frame_texture      != null and 
-			key_hole_frame_texture != null and 
-			top_frame_open_texture != null and
-			key_hole_open_texture  != null )
