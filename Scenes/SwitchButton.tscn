@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/SwitchButton.gd" type="Script" id=1]
+[ext_resource path="res://Assets/PuzzleTiles/platformPack_tile053.png" type="Texture" id=2]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[node name="SwitchButton" type="Node2D"]
+position = Vector2( 287.897, 223.82 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="CollisionArea"]
+texture = ExtResource( 2 )
+
+[node name="Collider" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_body_entered"]
