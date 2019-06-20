@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/HeartProgressBar.gd" type="Script" id=2]
@@ -14,7 +14,8 @@
 [ext_resource path="res://Assets/Tiles/platformPack_tile003.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Tiles/platformPack_tile004.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Key.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 use_filter = true
@@ -142,6 +143,7 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 [node name="Main" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 editor/display_folded = true
@@ -208,7 +210,8 @@ tile_data = PoolIntArray( 524272, 0, 0, 524273, 0, 0, 524274, 0, 0, 524275, 0, 0
 [node name="Door" parent="." instance=ExtResource( 14 )]
 position = Vector2( 262.051, 416.704 )
 
-[node name="Player" parent="." instance=ExtResource( 15 )]
-position = Vector2( -107.347, 390.468 )
+[node name="Key" parent="." instance=ExtResource( 15 )]
+position = Vector2( 123.593, 370.78 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Player" parent="." instance=ExtResource( 16 )]
+position = Vector2( -107.347, 390.468 )
