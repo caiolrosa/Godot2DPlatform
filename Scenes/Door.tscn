@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Doors/platformPack_tile049.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Doors/platformPack_tile058.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Doors/platformPack_tile048.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Doors/platformPack_tile057.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Audio/Door/door_open_0.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
@@ -26,4 +27,7 @@ position = Vector2( 0, -64 )
 [node name="Collider" type="CollisionShape2D" parent="CollisionArea"]
 position = Vector2( 0, -32 )
 shape = SubResource( 1 )
+
+[node name="DoorOpenAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_body_entered"]
