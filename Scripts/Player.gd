@@ -16,10 +16,16 @@ var health_points = 100
 
 func _ready():
 	EventBroker.connect(EventBroker.DIAMOND_COLLECTED_EVENT, self, "_on_collected_diamond")
+	EventBroker.connect(EventBroker.APPLY_DAMAGE, self, "_on_apply_damage")
 
 func _on_collected_diamond(diamond_type):
 	money += diamond_type
 	EventBroker.dispatch(EventBroker.UPDATE_MONEY_EVENT, [money])
+
+func _on_apply_damage(target, damage):
+	if target == self:
+		health_points = max(health_points - damage, 0)
+		EventBroker.dispatch(EventBroker.UPDATE_HEALTH_POINTS_EVENT, [health_points])
 
 func _apply_gravity():
 	velocity.y += GRAVITY

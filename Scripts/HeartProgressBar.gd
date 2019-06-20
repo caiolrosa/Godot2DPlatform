@@ -38,6 +38,6 @@ func _update_heart_sprites():
 			health_count -= health_step / 2
 			heart_sprites[i].texture = half_heart_texture
 
-func _on_update_health_points(health_points):
+func update_health_points(health_points):
 	self.health_points = health_points
 	_update_heart_sprites()
