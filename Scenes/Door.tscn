@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Door.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Doors/platformPack_tile049.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Doors/platformPack_tile058.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Doors/platformPack_tile048.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Doors/platformPack_tile057.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 64 )
+
+[node name="Door" type="Node2D"]
+script = ExtResource( 1 )
+top_frame_texture = ExtResource( 2 )
+key_hole_frame_texture = ExtResource( 3 )
+top_frame_open_texture = ExtResource( 4 )
+key_hole_open_texture = ExtResource( 5 )
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="TopFrame" type="Sprite" parent="CollisionArea"]
+position = Vector2( 0, -64 )
+
+[node name="KeyHoleFrame" type="Sprite" parent="CollisionArea"]
+
+[node name="Collider" type="CollisionShape2D" parent="CollisionArea"]
+position = Vector2( 0, -32 )
+shape = SubResource( 1 )
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_body_entered"]

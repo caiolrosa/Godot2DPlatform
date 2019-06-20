@@ -1,5 +1,10 @@
 extends KinematicBody2D
 
+class_name Player
+
+onready var Sprite: Sprite = $Sprite
+onready var JumpAudioPlayer: AudioStreamPlayer2D = $JumpAudioPlayer
+
 const SPEED = 150
 const GRAVITY = 20
 const JUMP_FORCE = 400
@@ -8,9 +13,6 @@ const GROUND_NORMAL = Vector2(0, -1)
 var velocity = Vector2()
 var money = 0
 var health_points = 100
-
-onready var Sprite: Sprite = $Sprite
-onready var JumpAudioPlayer: AudioStreamPlayer2D = $JumpAudioPlayer
 
 func _ready():
 	EventBroker.connect(EventBroker.DIAMOND_COLLECTED_EVENT, self, "_on_collected_diamond")
