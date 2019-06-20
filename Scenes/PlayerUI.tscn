@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/HeartProgressBar.gd" type="Script" id=2]
+[ext_resource path="res://Assets/LifePoints/platformPack_item005.png" type="Texture" id=3]
+[ext_resource path="res://Assets/LifePoints/platformPack_item011.png" type="Texture" id=4]
+[ext_resource path="res://Assets/LifePoints/platformPack_item017.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Fonts/MarioLuigi2.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/Diamonds/platformPack_item007.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+use_filter = true
+extra_spacing_top = 10
+font_data = ExtResource( 6 )
+
+[node name="UI" type="Control"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HealthHBox" type="HBoxContainer" parent="."]
+margin_top = 5.0
+alignment = 1
+script = ExtResource( 2 )
+empty_heart_texture = ExtResource( 3 )
+half_heart_texture = ExtResource( 4 )
+full_heart_texture = ExtResource( 5 )
+
+[node name="MoneyHBox" type="HBoxContainer" parent="."]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -164.0
+margin_bottom = 80.0
+alignment = 2
+
+[node name="MoneyLabel" type="Label" parent="MoneyHBox"]
+margin_right = 80.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+theme = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="TextureRect" type="TextureRect" parent="MoneyHBox"]
+margin_left = 84.0
+margin_right = 164.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 7 )
+stretch_mode = 6
