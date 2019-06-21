@@ -61,26 +61,26 @@ position = Vector2( 3036.55, 163.21 )
 diamond_type = 300
 
 [node name="Yellow Unlockables" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Door" parent="Yellow Unlockables" instance=ExtResource( 7 )]
 position = Vector2( 3067.51, 32.5154 )
 type = 1
+next_level = "res://Scenes/Levels/FirstLevelScene.tscn"
 
 [node name="Key" parent="Yellow Unlockables" instance=ExtResource( 8 )]
 position = Vector2( 2153.19, 982.084 )
 type = 1
 
 [node name="Red Unlockables" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Key" parent="Red Unlockables" instance=ExtResource( 8 )]
 position = Vector2( 869.249, 892.055 )
 type = 3
 
 [node name="Door" parent="Red Unlockables" instance=ExtResource( 7 )]
-position = Vector2( 672.18, -159.639 )
+position = Vector2( 675.271, -159.639 )
 type = 3
+next_level = "res://Scenes/Levels/FirstBonusLevelScene.tscn"
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 220.454, 317.093 )

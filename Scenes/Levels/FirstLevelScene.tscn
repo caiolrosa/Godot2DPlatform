@@ -74,6 +74,7 @@ position = Vector2( 1060.5, 403.736 )
 [node name="Door" parent="." instance=ExtResource( 9 )]
 position = Vector2( 2462.02, 800.135 )
 type = 2
+next_level = "res://Scenes/Levels/SecondLevelScene.tscn"
 
 [node name="Key" parent="." instance=ExtResource( 10 )]
 position = Vector2( 1342.53, 1100.32 )

@@ -6,9 +6,9 @@ onready var TopFrameSprite: Sprite = $CollisionArea/TopFrame
 onready var KeyHoleFrameSprite: Sprite = $CollisionArea/KeyHoleFrame
 onready var DoorOpenAudioPlayer: AudioStreamPlayer2D = $DoorOpenAudioPlayer
 
-export(PackedScene) var next_level
+export(String, FILE, "*.tscn") var next_level
+export(bool) var is_open = false
 
-var is_open = false
 var _DOOR_TYPE_TEXTURES = {
 	"top_frame_open": preload("res://Assets/Doors/platformPack_tile048.png"),
 	"key_hole_frame_open": preload("res://Assets/Doors/platformPack_tile057.png"),
@@ -31,13 +31,17 @@ var _DOOR_TYPE_TEXTURES = {
 }
 
 func _on_body_entered(body: PhysicsBody2D):
-	if not is_open and body is Player:
-		pass
+	if is_open and body is Player:
+		LevelLoader.next_level(next_level, 2)
 
 func _ready():
 	assert(next_level != null)
-	TopFrameSprite.texture = _DOOR_TYPE_TEXTURES[type]["top_frame"]
-	KeyHoleFrameSprite.texture = _DOOR_TYPE_TEXTURES[type]["key_hole_frame"]
+	if is_open:
+		TopFrameSprite.texture = _DOOR_TYPE_TEXTURES["top_frame_open"]
+		KeyHoleFrameSprite.texture = _DOOR_TYPE_TEXTURES["key_hole_frame_open"]
+	else:
+		TopFrameSprite.texture = _DOOR_TYPE_TEXTURES[type]["top_frame"]
+		KeyHoleFrameSprite.texture = _DOOR_TYPE_TEXTURES[type]["key_hole_frame"]
 	EventBroker.connect(EventBroker.KEY_COLLECTED_EVENT, self, "_on_open")
 
 func _on_open(key_type):
