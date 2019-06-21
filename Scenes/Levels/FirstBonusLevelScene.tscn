@@ -4,12 +4,13 @@
 [ext_resource path="res://Assets/Backgrounds/backgroundCastles.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Backgrounds/cloudLayerB2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Terrain/TileSets/TerrainTileSet.tres" type="TileSet" id=4]
-[ext_resource path="res://Scenes/Trap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Traps/Trap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/SwitchTile.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/SwitchButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Diamond.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=10]
+
 
 [node name="FirstBonusLevelScene" type="Node"]
 
