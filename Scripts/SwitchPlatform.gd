@@ -8,20 +8,20 @@ onready var SwitchPlatformSprite: Sprite = $StaticBody2D/Sprite
 var is_on = false
 var _TILE_TEXTURES = {
 	UNLOCKABLE_TYPE.BLUE: {
-		"switch_on":  load("res://Assets/PuzzleTiles/platformPack_tile007.png"),
-		"switch_off": load("res://Assets/PuzzleTiles/platformPack_tile009.png")
+		"switch_on":  preload("res://Assets/PuzzleTiles/platformPack_tile007.png"),
+		"switch_off": preload("res://Assets/PuzzleTiles/platformPack_tile009.png")
 	},
 	UNLOCKABLE_TYPE.YELLOW: {
-		"switch_on":  load("res://Assets/PuzzleTiles/platformPack_tile008.png"),
-		"switch_off": load("res://Assets/PuzzleTiles/platformPack_tile010.png")
+		"switch_on":  preload("res://Assets/PuzzleTiles/platformPack_tile008.png"),
+		"switch_off": preload("res://Assets/PuzzleTiles/platformPack_tile010.png")
 	},
 	UNLOCKABLE_TYPE.GREEN: {
-		"switch_on":  load("res://Assets/PuzzleTiles/platformPack_tile019.png"),
-		"switch_off": load("res://Assets/PuzzleTiles/platformPack_tile021.png")
+		"switch_on":  preload("res://Assets/PuzzleTiles/platformPack_tile019.png"),
+		"switch_off": preload("res://Assets/PuzzleTiles/platformPack_tile021.png")
 	},
 	UNLOCKABLE_TYPE.RED: {
-		"switch_on":  load("res://Assets/PuzzleTiles/platformPack_tile020.png"),
-		"switch_off": load("res://Assets/PuzzleTiles/platformPack_tile022.png")
+		"switch_on":  preload("res://Assets/PuzzleTiles/platformPack_tile020.png"),
+		"switch_off": preload("res://Assets/PuzzleTiles/platformPack_tile022.png")
 	}
 }
 
