@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/adventurer_walk1.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Player/adventurer_walk2.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Player/adventurer_jump.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Player/adventurer_fall.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Player/adventurer_idle.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Player/adventurer_stand.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Player/adventurer_idle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Player/adventurer_stand.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Player/adventurer_jump.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Player/adventurer_fall.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Audio/Jump/jump_0.wav" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -16,25 +16,72 @@ animations = [ {
 "name": "Walk",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "JumpStart",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "JumpEnd",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 1.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 28.0
+radius = 30.0
 height = 35.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "GhostMode"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( -0.5, -2, 1 ),
+"update": 0,
+"values": [ Color( 0.568627, 0.92549, 1, 1 ), Color( 0.235294, 0.870588, 1, 1 ), Color( 0.678431, 0.945098, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "NormalMode"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.568627, 0.92549, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "TakeDamage"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 2, 2, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.552941, 0.552941, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 240.622, 300.254 )
@@ -49,7 +96,7 @@ animation = "Idle"
 playing = true
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 10 )
+position = Vector2( 0, 8 )
 shape = SubResource( 2 )
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -61,3 +108,8 @@ smoothing_speed = 10.0
 
 [node name="JumpAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
+
+[node name="VFXAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/GhostMode = SubResource( 3 )
+anims/NormalMode = SubResource( 4 )
+anims/TakeDamage = SubResource( 5 )

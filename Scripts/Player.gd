@@ -4,6 +4,9 @@ class_name Player
 
 onready var PlayerSprite: Sprite = $Sprite
 onready var JumpAudioPlayer: AudioStreamPlayer2D = $JumpAudioPlayer
+onready var Navigation: Navigation2D = $Navigation
+onready var VFXPlayer: AnimationPlayer = $VFXAnimationPlayer
+onready var start_position: Vector2 = get_position()
 
 const SPEED = 150
 const GRAVITY = 20
@@ -13,6 +16,7 @@ const GROUND_NORMAL = Vector2(0, -1)
 var velocity = Vector2()
 var money = 0
 var health_points = 100
+var path_to_spawn: PoolVector2Array
 
 func _ready():
 	EventBroker.connect(EventBroker.DIAMOND_COLLECTED_EVENT, self, "_on_collected_diamond")
@@ -29,11 +33,39 @@ func _on_apply_damage(target, damage):
 
 func _on_fall_off_map(damage):
 	_take_damage(damage)
-	set_physics_process(false)
-	velocity = Vector2.ZERO
+	if Navigation == null:
+		return
+	path_to_spawn = Navigation.get_simple_path(get_position(), start_position)
+	_start_ghost_mode()
+
+func _start_ghost_mode():
+	if path_to_spawn.size() > 0:
+		VFXPlayer.play("GhostMode")
+
+func _stop_ghost_mode():
+	if path_to_spawn.size() == 0:
+		$VFXAnimationPlayer.play("NormalMode")
+
+func _follow_spawn_path(delta):
+	var next_position = path_to_spawn[0]
+	if next_position.x < position.x:
+		PlayerSprite.flip_h = true
+	else:
+		PlayerSprite.flip_h = false
+	var next_distance = position.distance_to(next_position)
+	var move_amount = JUMP_FORCE * delta
+	if next_distance <= 0 or next_distance - move_amount < 0:
+		position = next_position
+		path_to_spawn.remove(0)
+		_stop_ghost_mode()
+		return
+	position = position.linear_interpolate(next_position, move_amount / next_distance)
 
 func _take_damage(damage):
+	VFXPlayer.play("TakeDamage")
 	health_points = max(health_points - damage, 0)
+	if health_points == 0:
+		print("Game Over")
 	EventBroker.dispatch(EventBroker.UPDATE_HEALTH_POINTS_EVENT, [health_points])
 
 func _apply_gravity():
@@ -85,6 +117,9 @@ func _act_on_input():
 	_update_movement()
 
 func _physics_process(delta):
-	_apply_gravity()
-	_act_on_input()
-	_update_jump_animation()
+	if path_to_spawn.size() == 0:
+		_apply_gravity()
+		_act_on_input()
+		_update_jump_animation()
+	else:
+		_follow_spawn_path(delta)
