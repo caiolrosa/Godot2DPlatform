@@ -12,7 +12,6 @@ func _ready():
 	root = get_tree().get_root()
 	current_level = root.get_child(root.get_child_count() - 1)
 	EventBroker.connect(EventBroker.GAME_OVER_EVENT, self, "_on_game_over")
-	EventBroker.connect(EventBroker.RESET_CURRENT_LEVEL_EVENT, self, "_reset_current_level")
 	set_process(false)
 
 func next_level(scene_path: String, min_wait_sec: int = 0):
@@ -20,7 +19,7 @@ func next_level(scene_path: String, min_wait_sec: int = 0):
 	timer.start(min_wait_sec)
 	call_deferred("_deferred_next_level", scene_path)
 
-func _reset_current_level(min_wait_sec:int = 3):
+func reset_current_level(min_wait_sec:int = 0):
 	root.remove_child(game_over_screen)
 	root.add_child(timer)
 	timer.start(min_wait_sec)
@@ -32,7 +31,7 @@ func _deferred_next_level(scene_path: String):
 	root.add_child(loading_screen)
 	set_process(true)
 
-func _set_new_level(new_level: Resource):
+func _set_new_level(new_level: PackedScene):
 	EventBroker.dispatch(EventBroker.FINISH_LOADING_EVENT)
 	current_level = new_level.instance()
 	root.add_child(current_level)

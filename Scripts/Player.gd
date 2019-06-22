@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name Player
 
-onready var PlayerSprite: Sprite = $Sprite
+onready var PlayerSprite: AnimatedSprite = $Sprite
 onready var JumpAudioPlayer: AudioStreamPlayer2D = $JumpAudioPlayer
 onready var Navigation: Navigation2D = $Navigation
 onready var VFXPlayer: AnimationPlayer = $VFXAnimationPlayer
@@ -23,15 +23,15 @@ func _ready():
 	EventBroker.connect(EventBroker.APPLY_DAMAGE, self, "_on_apply_damage")
 	EventBroker.connect(EventBroker.FALL_OFF_MAP_EVENT, self, "_on_fall_off_map")
 
-func _on_collected_diamond(diamond_type):
+func _on_collected_diamond(diamond_type: int):
 	money += diamond_type
 	EventBroker.dispatch(EventBroker.UPDATE_MONEY_EVENT, [money])
 
-func _on_apply_damage(target, damage):
+func _on_apply_damage(target: Node, damage: int):
 	if target == self:
 		_take_damage(damage)
 
-func _on_fall_off_map(damage):
+func _on_fall_off_map(damage: int):
 	_take_damage(damage)
 	if Navigation == null:
 		return
@@ -44,7 +44,7 @@ func _start_ghost_mode():
 
 func _stop_ghost_mode():
 	if path_to_spawn.size() == 0:
-		$VFXAnimationPlayer.play("NormalMode")
+		VFXPlayer.play("NormalMode")
 
 func _follow_spawn_path(delta):
 	var next_position = path_to_spawn[0]

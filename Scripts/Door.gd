@@ -44,7 +44,7 @@ func _ready():
 		KeyHoleFrameSprite.texture = _DOOR_TYPE_TEXTURES[type]["key_hole_frame"]
 	EventBroker.connect(EventBroker.KEY_COLLECTED_EVENT, self, "_on_open")
 
-func _on_open(key_type):
+func _on_open(key_type: int):
 	if key_type != type:
 		return
 	

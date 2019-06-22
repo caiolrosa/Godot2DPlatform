@@ -86,6 +86,10 @@ LevelLoader="*res://Scripts/LevelLoader.gd"
 [debug]
 
 gdscript/completion/autocomplete_setters_and_getters=true
+gdscript/warnings/unsafe_property_access=true
+gdscript/warnings/unsafe_method_access=true
+gdscript/warnings/unsafe_cast=true
+gdscript/warnings/unsafe_call_argument=true
 
 [rendering]
 

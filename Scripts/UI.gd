@@ -10,8 +10,8 @@ func _ready():
 	EventBroker.connect(EventBroker.UPDATE_HEALTH_POINTS_EVENT, self, "_on_player_update_health_points")
 	MoneyLabel.text = "0"
 
-func _on_player_update_money(money):
+func _on_player_update_money(money: int):
 	MoneyLabel.text = money as String
 
-func _on_player_update_health_points(health_points):
+func _on_player_update_health_points(health_points: int):
 	HealthBar.update_health_points(health_points)

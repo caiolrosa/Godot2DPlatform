@@ -25,7 +25,7 @@ var _TILE_TEXTURES = {
 	}
 }
 
-func _on_switch_button_pressed(button_type):
+func _on_switch_button_pressed(button_type: int):
 	if button_type == type && not is_on:
 		SwitchPlatformSprite.texture = _TILE_TEXTURES[type]["switch_on"]
 		SwitchPlatformCollision.layers = 1
