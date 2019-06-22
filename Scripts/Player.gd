@@ -64,9 +64,9 @@ func _follow_spawn_path(delta):
 func _take_damage(damage):
 	VFXPlayer.play("TakeDamage")
 	health_points = max(health_points - damage, 0)
-	if health_points == 0:
-		print("Game Over")
 	EventBroker.dispatch(EventBroker.UPDATE_HEALTH_POINTS_EVENT, [health_points])
+	if health_points == 0:
+		EventBroker.dispatch(EventBroker.GAME_OVER_EVENT)
 
 func _apply_gravity():
 	velocity.y += GRAVITY

@@ -14,4 +14,3 @@ func _on_finish_loading():
 func _ready():
 	Animation.play("start")
 	EventBroker.connect(EventBroker.FINISH_LOADING_EVENT, self, "_on_finish_loading")
-

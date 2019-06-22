@@ -1,0 +1,162 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/GameOverScreenUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/MarioLuigi2.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "end"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.176471, 0.176471, 0.176471, 1 ), Color( 0.176471, 0.176471, 0.176471, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect/VBoxContainer/GameOverLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 0.329877 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/ColorRect/VBoxContainer/TryAgainButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 0.329877 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/ColorRect/VBoxContainer/MainMenuButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 0.329877 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.176471, 0.176471, 0.176471, 0.588235 ), Color( 0.176471, 0.176471, 0.176471, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect/VBoxContainer/GameOverLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 3.99999, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/ColorRect/VBoxContainer/TryAgainButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/ColorRect/VBoxContainer/MainMenuButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="GameOverScreenUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.22772
+margin_bottom = 1.22772
+color = Color( 0.176471, 0.176471, 0.176471, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+anchor_left = 0.33
+anchor_right = 0.66
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 247.0
+margin_right = 337.0
+margin_bottom = 304.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+
+[node name="TryAgainButton" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 308.0
+margin_right = 337.0
+margin_bottom = 328.0
+text = "Try Again"
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 332.0
+margin_right = 337.0
+margin_bottom = 352.0
+text = "Quit To Main Menu"
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+anims/end = SubResource( 3 )
+anims/start = SubResource( 2 )
+[connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

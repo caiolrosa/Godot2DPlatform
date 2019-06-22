@@ -16,6 +16,10 @@ signal update_money(money)
 signal apply_damage(target, damage)
 # warning-ignore:unused_signal
 signal fall_off_map(damage)
+# warning-ignore:unused_signal
+signal reset_current_level()
+# warning-ignore:unused_signal
+signal game_over()
 
 const KEY_COLLECTED_EVENT        = "key_collected"
 const DIAMOND_COLLECTED_EVENT    = "diamond_collected"
@@ -25,6 +29,8 @@ const APPLY_DAMAGE               = "apply_damage"
 const SWITCH_BUTTON_PRESSED      = "switch_button_pressed"
 const FINISH_LOADING_EVENT       = "finish_loading"
 const FALL_OFF_MAP_EVENT         = "fall_off_map"
+const GAME_OVER_EVENT            = "game_over"
+const RESET_CURRENT_LEVEL_EVENT  = "reset_current_level"
 
 func dispatch(event: String, payload: Array = []):
 	payload.push_front(event)

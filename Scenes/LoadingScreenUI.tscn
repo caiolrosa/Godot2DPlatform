@@ -3,11 +3,11 @@
 [ext_resource path="res://Scripts/LoadingScreenUI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/MarioLuigi2.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "end"
 length = 0.5
 tracks/0/type = "value"
@@ -35,8 +35,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "loading"
+[sub_resource type="Animation" id=3]
 loop = true
 step = 0.25
 tracks/0/type = "value"
@@ -52,8 +51,7 @@ tracks/0/keys = {
 "values": [ "LOADING", "LOADING.", "LOADING..", "LOADING..." ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "start"
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
@@ -102,11 +100,11 @@ margin_left = 422.0
 margin_top = 277.0
 margin_right = 602.0
 margin_bottom = 323.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "LOADING"
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/end = SubResource( 4 )
-anims/loading = SubResource( 1 )
-anims/start = SubResource( 3 )
+anims/end = SubResource( 2 )
+anims/loading = SubResource( 3 )
+anims/start = SubResource( 4 )
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]
