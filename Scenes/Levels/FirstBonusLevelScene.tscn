@@ -84,6 +84,7 @@ position = Vector2( 1183.92, 416.172 )
 position = Vector2( 58.0216, 353.375 )
 type = 3
 next_level = "res://Scenes/Levels/SecondLevelScene.tscn"
+is_open = true
 
 [node name="BlueSwitches" type="Node" parent="."]
 editor/display_folded = true
