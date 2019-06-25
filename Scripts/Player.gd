@@ -14,8 +14,6 @@ const JUMP_FORCE = 400
 const GROUND_NORMAL = Vector2(0, -1)
 
 var velocity = Vector2()
-var money = 0
-var health_points = 100
 var path_to_spawn: PoolVector2Array
 
 func _ready():
@@ -24,8 +22,7 @@ func _ready():
 	EventBroker.connect(EventBroker.FALL_OFF_MAP_EVENT, self, "_on_fall_off_map")
 
 func _on_collected_diamond(diamond_type: int):
-	money += diamond_type
-	EventBroker.dispatch(EventBroker.UPDATE_MONEY_EVENT, [money])
+	Store.dispatch(Actions.set_player_diamonds(diamond_type))
 
 func _on_apply_damage(target: Node, damage: int):
 	if target == self:
@@ -63,9 +60,10 @@ func _follow_spawn_path(delta):
 
 func _take_damage(damage):
 	VFXPlayer.play("TakeDamage")
-	health_points = max(health_points - damage, 0)
-	EventBroker.dispatch(EventBroker.UPDATE_HEALTH_POINTS_EVENT, [health_points])
-	if health_points == 0:
+	var current_health_points = Store.get_state(EntityTypes.PLAYER).health_points
+	var new_health_points = max(current_health_points - damage, 0)
+	Store.dispatch(Actions.set_player_health_points(new_health_points))
+	if new_health_points == 0:
 		EventBroker.dispatch(EventBroker.GAME_OVER_EVENT)
 
 func _apply_gravity():
